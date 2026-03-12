@@ -49,6 +49,23 @@ x. Scope Resolution Operator: ::
 xi. Member access Operator: . ->  
 xii. Pointer Operator: * &  
 
+**10. enumeration (enum)**  
+enum is a user-defined data type that assigns names to integer constants to make code more readable.  
+By default, the first value is `0` and each next element increases by `+1`.  
+If one value is changed, the following elements automatically continue from it.  
+Example:  
+enum Day { MON, TUE, WED = 5, THU, FRI };  
+
+**11. typedef**  
+typedef is used to create an alternative name (alias) for an existing data type.  
+It makes complex data types easier to read and use.  
+Example:  
+typedef unsigned int uint;  
+uint num = 10;  
+
+
+
+
 
 
 
