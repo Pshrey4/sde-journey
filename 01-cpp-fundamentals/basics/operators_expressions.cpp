@@ -48,5 +48,48 @@ int main(){
     root = (- b_term + sqrt(pow(b_term, 2) - 4*a_term*c_term)) / (2 * a_term);
     std::cout<<"Root of equation is "<<root<<std::endl;
 
+    //Example 6: Compound assignment operators
+    int sum;
+    //sum = sum + a can be written as
+    sum += a;
+    //it is faster
+    std::cout<<"Sum is "<<sum<<std::endl;
+
+    //Example 7: Increment/Decrement Operators
+    int i = 7;
+    std::cout<<"Value of i before increment "<<i<<std::endl;
+    i++;
+    std::cout<<"Value of i after increment "<<i<<std::endl;
+    i--;
+    std::cout<<"Value of i after decrement "<<i<<std::endl;
+
+    //Example 8: Pre and Post increment
+    int j, k;
+    j = ++i;
+    std::cout<<"Value of j when i is pre-incremented "<<j<<std::endl;
+    std::cout<<"Value of i now "<<i<<std::endl;
+    k = i++;
+    std::cout<<"Value of k when i is post-incremented "<<k<<std::endl;
+    std::cout<<"Value of i now "<<i<<"\n";
+
+    //Example 9: Pre and Post increment in expression
+    k = i++ * j;
+    std::cout<<"Value of k post-increment i "<<k<<std::endl;
+    i--;
+    k = ++i * j;
+    std::cout<<"Value of k pre-increment i "<<k<<std::endl;
+
+    //Example 10: Overflow Concept
+    char over = 127; //max +ve range char variable can take
+    over++;
+    std::cout<<"Value after increment "<<(int)over<<std::endl;
+    //here output will be -128 as it goes beyond the range of char
+
+    //Example 11: Bitwise operators
+    int var1 = 7, var2 = 5, var3;
+    var3 = var1 & var2;
+    std::cout<<"Bitwise AND gives "<<var3<<std::endl;
+
+
     return 0;
 }
