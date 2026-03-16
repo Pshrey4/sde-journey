@@ -1,6 +1,6 @@
 # Loops Notes  
 
-**WHile Loop**  
+**While Loop**  
 A while loop repeatedly executes a block of code as long as the condition is true.  
 The condition is checked before each iteration.  
 ```  
