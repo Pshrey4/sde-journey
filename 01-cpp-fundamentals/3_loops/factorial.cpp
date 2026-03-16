@@ -6,14 +6,17 @@ int main(){
     std::cout<<"Enter a number: ";
     std::cin>>num;
 
-    do{
-        fact *= i;
-        i++;
-    }while (i<=num);
+    if(num == 0 || num == 1){
+        std::cout<<"Factorial of "<<num<<": "<<fact<<std::endl;
+    }
+    else{
+        do{
+            fact *= i;
+            i++;
+        }while (i<=num);
 
-    std::cout<<"Factorial of "<<num<<": "<<fact<<std::endl;
-
+        std::cout<<"Factorial of "<<num<<": "<<fact<<std::endl;
+    }
+ 
     return 0;
-    
-    
 }
