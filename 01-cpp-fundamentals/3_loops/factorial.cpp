@@ -1,7 +1,9 @@
 #include<iostream>
 
 int main(){
-    int i = 1, num, fact = 1;
+    int i = 1, num;
+    //used long long instead of int because of int overflow
+    long long fact = 1;
 
     std::cout<<"Enter a number: ";
     std::cin>>num;
