@@ -17,11 +17,22 @@ int main(){
     //going to new line 
     std::cout<<std::endl;
 
-    //DIsplaying n numbers using do..while loop
+    //Displaying n numbers using do..while loop
     do{
         std::cout<<i<<" ";
         i++;
     } while(i <= n);
+
+    //going to new line
+    std::cout<<std::endl;
+
+    //Displaying n numbers using for loop
+    for(i=1; i<=n; i++){
+        std::cout<<i<<" ";
+    }
+
+    //going to new line
+    std::cout<<std::endl;
 
     return 0;
 }
