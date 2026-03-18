@@ -66,5 +66,23 @@ int main(){
     }
     std::cout<<"\n";
 
+    //for each loop examples 
+    int N[] = {1, 3, 5, 7, 9};
+    //here the copy of N array is passed so original values will not change
+    for(auto q:N){
+        std::cout<<q<<" ";
+    }
+    std::cout<<"\n";
+    //here the reference of N array is passed so original values will change
+    for(auto &r:N){  
+        std::cout<<++r<<" ";
+    }
+    std::cout<<"\n";
+    //updated values of N array
+    for(auto q:N){
+        std::cout<<q<<" ";
+    }
+    std::cout<<"\n";
+
     return 0;
 }
