@@ -40,8 +40,33 @@ std::cout << arr[1];  // 10
 arr[2] = 20;          // modifying value
 
 ```  
-
 Key Points:  
 Index always starts from 0  
 Accessing out-of-bounds index leads to undefined behavior  
 Arrays store elements in continuous memory  
+
+**Multidimensional Arrays**  
+A multidimensional array is an array of arrays.  
+It is used to store data in tabular form (rows and columns).  
+```
+//declaration
+data_type array_name[size1][size2];
+
+//initialization
+data_type array_name[size1][size2] = {
+    {value1, value2, ...},
+    {value1, value2, ...}
+};
+
+//another way to initialize
+data_type array_name[size1][size2] = {values};
+
+//accessing elements of array
+array_name[row_index][column_index]
+```
+
+Indexing  
+First index → row  
+Second index → column  
+Indexing starts from 0  
+
