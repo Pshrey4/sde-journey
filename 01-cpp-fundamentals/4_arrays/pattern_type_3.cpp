@@ -22,5 +22,13 @@ int main(){
         std::cout<<"\n";
     }
 
+    //variation 3
+    for(int i=0; i<num; i++){
+        for(int j=i; j<num; j++){
+            std::cout<<"* ";
+        }
+        std::cout<<"\n";
+    }
+
     return 0;
 }
