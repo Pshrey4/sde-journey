@@ -156,5 +156,25 @@ int main(){
     }
     std::cout<<std::endl;
 
+    //at() function gives character at the given index
+    std::cout<<"Character at index 5 in string 'Programming': "<<str6.at(5)<<std::endl;
+    //instead of using at() we can also use []
+    std::cout<<"Character at index 5 in string 'Programming': "<<str6[5]<<std::endl;
+    std::cout<<std::endl;
+
+    //front() and back() functions give first and last letter of string respectively
+    std::cout<<"First letter in string 'Programming': "<<str6.front()<<std::endl;
+    std::cout<<"Last letter in string 'Programming': "<<str6.back()<<std::endl;
+    std::cout<<std::endl;
+
+    //using + operator to concatenate strings and = operator to assign them
+    std::string str7 = "Hello";
+    std::cout<<"String 1 before concatenating: "<<str7<<std::endl;
+    std::string str8 = "World";
+    std::cout<<"String 2 before concatenating: "<<str8<<std::endl;
+    str7 = str7 + " " + str8;
+    std::cout<<"String 1 after concatenating: "<<str7<<std::endl;
+    std::cout<<std::endl;
+    
     return 0;
 }
