@@ -1,6 +1,22 @@
 // Problem: Fizz Buzz
 // https://leetcode.com/problems/fizz-buzz/description/
 
+// Approach:
+// - Iterate from 1 to n
+// - For each number:
+//     - If divisible by both 3 and 5 → "FizzBuzz"
+//     - If divisible by 3 → "Fizz"
+//     - If divisible by 5 → "Buzz"
+//     - Else → convert number to string and store
+
+// Mistakes:
+// - Used incorrect loop range (i = 1 to i < n), causing one less iteration
+// - Repeated the same off-by-one error in the printing loop
+
+// Learnings:
+// - Always verify loop boundaries to avoid off-by-one errors
+// - Use std::to_string() to convert int → string
+
 #include<iostream>
 #include<string>
 
