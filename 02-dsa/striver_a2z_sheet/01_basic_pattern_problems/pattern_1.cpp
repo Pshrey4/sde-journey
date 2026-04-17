@@ -1,5 +1,8 @@
 // Problem Statement: Given an integer n, print the following output
-// e:\DSA NOTES\STRIVER A2Z\github repo notes\pattern 1.png
+// * * * *
+// * * * *
+// * * * *
+// * * * *
 
 // Approach:
 // Take an integer n as input to define the size of the square.
