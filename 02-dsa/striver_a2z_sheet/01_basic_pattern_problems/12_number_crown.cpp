@@ -7,9 +7,8 @@
 // Approach:
 // Loop from 1 to n to handle each row.
 // Print increasing numbers from 1 to i on the left side of the row.
-// Print the current number of spaces in the middle.
+// Print the current number of spaces in the middle from 1 to 2(n-1).
 // Print decreasing numbers from i to 1 on the right side of the row.
-// Reduce the number of middle spaces by 2 after each row.
 // Move to the next line after completing the row.
 
 // Complexity Analysis:
@@ -25,8 +24,6 @@ int main(){
     cout<<"Enter a number: ";
     cin>>n;
 
-    int spaces = 2*(n-1);
-
     for(int i=1; i<=n; i++){
         
         //loop to print left part of row
@@ -35,7 +32,7 @@ int main(){
         }
 
         //loop to print spaces
-        for(int j=1; j<=spaces; j++){
+        for(int j=1; j<=2*(n-i); j++){
             cout<<"  ";
         }
 
@@ -43,9 +40,6 @@ int main(){
         for(int j=i; j>=1; j--){
             cout<<j<<" ";
         }
-
-        //decrease spaces by 2 after each row
-        spaces -= 2;
 
         cout<<endl;
     }
