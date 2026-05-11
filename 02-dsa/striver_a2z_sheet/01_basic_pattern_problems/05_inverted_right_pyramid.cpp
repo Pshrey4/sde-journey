@@ -6,7 +6,7 @@
 
 // Approach:
 // Run an outer loop (i) from n to 1 for rows.
-// For each row, run an inner loop (j) starting from 0 to i.
+// For each row, run an inner loop (j) starting from i to 1.
 // Print a star (*) in each iteration of the inner loop.
 // After finishing each row, print a newline to move to the next row.
 
@@ -23,8 +23,8 @@ int main(){
     cout<<"Enter a number: ";
     cin>>n;
 
-    for(int i=n; i>0; i--){
-        for(int j=0; j<i; j++){
+    for(int i=n; i>=1; i--){
+        for(int j=i; j>=1; j--){
             cout<<"* ";
         }
         cout<<endl;
