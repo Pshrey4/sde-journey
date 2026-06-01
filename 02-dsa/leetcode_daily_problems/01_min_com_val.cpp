@@ -1,4 +1,5 @@
 // Problem: Minimum Common Value
+// Date: 19th May 2026
 // Link: https://leetcode.com/problems/minimum-common-value/description/?envType=daily-question&envId=2026-05-19
 
 // Approach:
