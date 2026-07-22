@@ -6,30 +6,27 @@ Different operating systems are designed to meet different computing requirement
 
 > **One-line Interview Definition:**
 >
-> **Operating systems are classified based on how they manage processes, users, hardware resources, and system execution.** :contentReference[oaicite:0]{index=0}
+> **Operating systems are classified based on how they manage processes, users, hardware resources, and system execution.** 
 
 ---
 
 # 🗂️ Classification of Operating Systems
 
-```text
-                 Operating Systems
-                        │
- ┌──────────────────────┼─────────────────────────┐
- │                      │                         │
- Batch             Multiprogramming         Multitasking
- │                      │                         │
- ├──────────────┬───────┼──────────────┐          │
- │              │       │              │          │
-Multiprocessing Distributed      Network     Real-Time
-                                             │
-                                      ┌──────┴──────┐
-                                      │             │
-                                    Hard         Soft
+```mermaid
+graph TD
+    A[Operating System]
 
-                        │
-                        ▼
-                  Mobile Operating System
+    A --> B[Batch OS]
+    A --> C[Multiprogramming OS]
+    A --> D[Multitasking / Time-Sharing OS]
+    A --> E[Multiprocessing OS]
+    A --> F[Distributed OS]
+    A --> G[Network OS]
+    A --> H[Real-Time OS]
+    A --> I[Mobile OS]
+
+    H --> J[Hard Real-Time OS]
+    H --> K[Soft Real-Time OS]
 ```
 
 ---
@@ -38,7 +35,7 @@ Multiprocessing Distributed      Network     Real-Time
 
 ## 📖 Definition
 
-A **Batch Operating System** executes a group of similar jobs together (**batch**) without any user interaction. Jobs are collected, queued, and executed one after another automatically. :contentReference[oaicite:1]{index=1}
+A **Batch Operating System** executes a group of similar jobs together (**batch**) without any user interaction. Jobs are collected, queued, and executed one after another automatically. 
 
 ### How it Works
 
@@ -83,7 +80,7 @@ Jobs Submitted
 
 ## 📖 Definition
 
-A **Multiprogramming Operating System** keeps multiple programs in memory simultaneously. Whenever one process waits for I/O, the CPU switches to another process, improving CPU utilization. :contentReference[oaicite:2]{index=2}
+A **Multiprogramming Operating System** keeps multiple programs in memory simultaneously. Whenever one process waits for I/O, the CPU switches to another process, improving CPU utilization. 
 
 ### How it Works
 
@@ -125,7 +122,7 @@ CPU switches between them whenever one waits for I/O.
 
 ## 📖 Definition
 
-A **Multitasking (Time-Sharing) Operating System** allows multiple tasks to execute seemingly at the same time by giving each task a small **time slice (quantum)**. :contentReference[oaicite:3]{index=3}
+A **Multitasking (Time-Sharing) Operating System** allows multiple tasks to execute seemingly at the same time by giving each task a small **time slice (quantum)**. 
 
 ### Time Sharing
 
@@ -162,7 +159,7 @@ Each process gets a fixed time quantum.
 
 ## 📖 Definition
 
-A **Multiprocessing Operating System** uses **two or more CPUs** to execute multiple processes simultaneously, improving performance and reliability. :contentReference[oaicite:4]{index=4}
+A **Multiprocessing Operating System** uses **two or more CPUs** to execute multiple processes simultaneously, improving performance and reliability. 
 
 ### Architecture
 
@@ -200,7 +197,7 @@ A **Multiprocessing Operating System** uses **two or more CPUs** to execute mult
 
 ## 📖 Definition
 
-A **Distributed Operating System** connects multiple independent computers through a network so they work together as a single system. :contentReference[oaicite:5]{index=5}
+A **Distributed Operating System** connects multiple independent computers through a network so they work together as a single system. 
 
 ### Architecture
 
@@ -242,7 +239,7 @@ Appears as one system.
 
 ## 📖 Definition
 
-A **Network Operating System** runs on a server and manages users, files, printers, security, and other network resources for connected computers. :contentReference[oaicite:6]{index=6}
+A **Network Operating System** runs on a server and manages users, files, printers, security, and other network resources for connected computers. 
 
 ### Architecture
 
@@ -278,7 +275,7 @@ Shared Resources
 
 ## 📖 Definition
 
-A **Real-Time Operating System (RTOS)** processes data and responds within a guaranteed time limit called the **response time**. :contentReference[oaicite:7]{index=7}
+A **Real-Time Operating System (RTOS)** processes data and responds within a guaranteed time limit called the **response time**. 
 
 ---
 
@@ -327,7 +324,7 @@ Occasional deadline misses are acceptable.
 
 ## 📖 Definition
 
-A **Mobile Operating System** is designed specifically for smartphones and tablets. It manages touch interfaces, applications, sensors, networking, and battery usage. :contentReference[oaicite:8]{index=8}
+A **Mobile Operating System** is designed specifically for smartphones and tablets. It manages touch interfaces, applications, sensors, networking, and battery usage. 
 
 ### ✅ Advantages
 
