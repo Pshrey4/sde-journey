@@ -8,15 +8,22 @@ class rectangle{
 
     public:
         //Non-parameterized or default constructor
-        rectangle(){
-            length = 1;
-            breadth = 1;
-        }
+        // rectangle(){
+        //     length = 1;
+        //     breadth = 1;
+        // }
 
         //Parameterized constructor
-        rectangle(int l, int b){
+        rectangle(int l = 1, int b = 1){ 
+            //If we give default values to the parameters then we do not need an extra overloaded non-paramaterized constructor
             set_length(l);
             set_breadth(b);
+        }
+
+        //Copy Constructor
+        rectangle(rectangle &r){
+            length = r.length;
+            breadth = r.breadth;
         }
 
         //This is property function to set the length of rectangle
@@ -66,7 +73,10 @@ int main(){
     std::cout<<"Area of r1: "<<r1.area()<<std::endl;
 
     rectangle r2(10, 5);
-    std::cout<<"Area of r2: "<<r2.area()<<std::endl;    
+    std::cout<<"Area of r2: "<<r2.area()<<std::endl;   
+    
+    rectangle r3(r2);
+    std::cout<<"Area of r3: "<<r3.area()<<std::endl;
 
     return 0;
 }
