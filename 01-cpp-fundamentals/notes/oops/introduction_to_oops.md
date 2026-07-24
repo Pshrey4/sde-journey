@@ -1187,8 +1187,709 @@ Example:
 int *p = new int[10];
 ```  
 
-or any other resource that needs independent ownership.    
+or any other resource that needs independent ownership.   
 
+**Types of Member Functions in a Class**  
+
+A well-designed class usually contains different types of member functions, each serving a specific purpose. Although not all of them are mandatory, following this structure results in a cleaner, more maintainable, and more professional class design.  
+
+Note: These are guidelines, not strict rules. Include only the functions that are meaningful for your class.  
+
+**Complete Structure of a Class**  
+
+```
+class Rectangle {
+private:
+    int length;
+    int breadth;
+
+public:
+    // Constructors
+    Rectangle();
+    Rectangle(int l, int b);
+    Rectangle(Rectangle &r);
+
+    // Mutators (Setter Methods)
+    void setLength(int l);
+    void setBreadth(int b);
+
+    // Accessors (Getter Methods)
+    int getLength();
+    int getBreadth();
+
+    // Facilitators
+    int area();
+    int perimeter();
+
+    // Inquiry / Inspector
+    bool isSquare();
+
+    // Destructor
+    ~Rectangle();
+};
+```  
+
+**Member Function Types**  
+
+| Function Type | Purpose | Example |
+|---------------|---------|---------|
+| Constructor | Initialize objects | `Rectangle()` |
+| Parameterized Constructor | Initialize with user values | `Rectangle(int, int)` |
+| Copy Constructor | Copy an existing object | `Rectangle(Rectangle &)` |
+| Mutator | Modify data members | `setLength()` |
+| Accessor | Read data members | `getLength()` |
+| Facilitator | Perform class-specific operations | `area()`, `perimeter()` |
+| Inquiry / Inspector | Check object state | `isSquare()` |
+| Destructor | Cleanup when object is destroyed | `~Rectangle()` |
+
+**Class Definition vs Function Definition**  
+
+In professional C++ programming, the class usually contains only the function declarations (prototypes).  
+The actual implementations are written outside the class using the scope resolution operator (`::`).  
+
+```
+Inside the Class:
+
+class Rectangle {
+public:
+    Rectangle();
+    int area();
+    int perimeter();
+};
+
+Outside the Class:
+
+Rectangle::Rectangle() {
+    // Constructor definition
+}
+
+int Rectangle::area() {
+    return length * breadth;
+}
+
+int Rectangle::perimeter() {
+    return 2 * (length + breadth);
+}
+```  
+
+Note: Function definitions outside the class improve readability, maintainability, and keep class declarations concise.  
+
+Remember: These are recommended guidelines, not mandatory requirements. Include only the functions that are meaningful for your class.  
+
+**Scope Resolution Operator (`::`)**  
+
+The Scope Resolution Operator (`::`) is used to define member functions outside the class while still associating them with that class.  
+In C++, there are two ways to write member functions:  
+1. Define the function inside the class.  
+2. Declare the function inside the class and define it outside using the scope resolution operator (`::`).  
+
+**Method 1: Define Member Functions Inside the Class**  
+
+The function body is written directly inside the class definition.
+
+```
+class Rectangle {
+private:
+    int length;
+    int breadth;
+
+public:
+    int area() {
+        return length * breadth;
+    }
+};
+```
+
+Characteristics:  
+- Function declaration and definition are together.  
+- Easy to read for very small functions.  
+- Automatically becomes an inline function.  
+
+**Method 2: Define Member Functions Outside the Class**  
+
+Only the function declaration (prototype) is written inside the class.
+
+```
+class Rectangle {
+private:
+    int length;
+    int breadth;
+
+public:
+    int perimeter();
+};
+```
+
+The function body is written outside the class using the scope resolution operator.  
+
+```
+int Rectangle::perimeter() {
+    return 2 * (length + breadth);
+}
+```  
+
+The `::` operator tells the compiler that `perimeter()` belongs to the `Rectangle` class, even though its definition is written outside the class.  
+
+**Syntax of Scope Resolution Operator**  
+
+```
+return_type ClassName::FunctionName(parameters)
+{
+    // Function body
+}
+```  
+
+**Inline Functions**  
+
+Any function defined inside the class automatically becomes an inline function.  
+
+Example:
+
+```
+class Rectangle {
+public:
+    int area()
+    {
+        return length * breadth;
+    }
+};
+```
+
+The compiler may replace
+
+```
+r.area();
+```
+
+with
+
+```cpp
+length * breadth;
+```
+
+instead of making a separate function call.
+
+Note: The compiler ultimately decides whether to inline a function or not.  
+
+**When Should Functions Be Inline?**  
+
+Inline functions are suitable for:  
+- Very small functions  
+- Getter methods  
+- Setter methods  
+- Simple arithmetic calculations  
+
+Examples:  
+
+```
+int getLength()
+{
+    return length;
+}
+
+void setLength(int l)
+{
+    length = l;
+}
+```
+
+**When Should Functions NOT Be Inline?**  
+
+Avoid writing complex functions inside the class.  
+Examples include functions containing:  
+- Loops  
+- Nested loops  
+- Multiple conditional statements  
+- Complex algorithms  
+- Large amounts of code  
+Instead, declare them inside the class and define them outside using `::`.  
+
+Example:  
+
+```
+class Rectangle {
+public:
+    int perimeter();
+};
+```
+
+```
+int Rectangle::perimeter()
+{
+    // Larger implementation
+}
+```   
+
+**Ways to Make a Function Inline**  
+
+**Method 1: Define the Function Inside the Class**  
+
+```
+class Test {
+public:
+    void fun1() {
+        cout << "Hello";
+    }
+};
+```
+
+Automatically treated as an inline function.  
+
+**Method 2: Use the `inline` Keyword**  
+
+Even if the function is defined outside the class, it can be declared inline.  
+
+```
+class Test {
+public:
+    void fun2();
+};
+
+inline void Test::fun2() {
+    cout << "Hello";
+}
+```
+
+The `inline` keyword requests the compiler to treat the function as an inline function.  
+
+Note:The compiler may choose whether or not to inline the function.  
+
+**Comparison**  
+
+| Function Inside Class | Function Outside Class |
+|------------------------|------------------------|
+| Automatically inline | Normal member function |
+| Definition inside class | Definition outside class |
+| Suitable for small functions | Suitable for larger functions |
+| May eliminate function-call overhead | Generates a separate function call |
+| Keeps implementation inside class | Keeps implementation separate from declaration |
+
+**Best Practice:**    
+Use inside-class definitions only for small, simple functions such as getters, setters, or simple calculations.  
+Use the scope resolution operator (`::`) for:  
+- Constructors  
+- Destructors  
+- Large functions  
+- Functions containing loops or complex logic  
+This keeps the class declaration clean and improves maintainability.  
+
+**`this` Pointer in C++**  
+
+The `this` pointer is a special pointer available inside every non-static member function of a class.  
+It points to the current object that is invoking the member function.  
+The primary use of the `this` pointer is to refer to the data members of the current object and resolve name ambiguity between data members and function parameters.  
+
+Example:  
+
+```
+class Rectangle {
+private:
+    int length;
+    int breadth;
+
+public:
+    Rectangle(int l, int b) {
+        length = l;
+        breadth = b;
+    }
+};
+```
+
+In this example, the constructor parameters are named differently (`l` and `b`), so there is no ambiguity.  
+
+Assignments are straightforward:  
+
+```
+length = l;
+breadth = b;
+```
+
+**The Ambiguity Problem**  
+
+Suppose we use the same names for the constructor parameters as the data members.  
+
+```
+class Rectangle {
+private:
+    int length;
+    int breadth;
+
+public:
+    Rectangle(int length, int breadth) {
+        length = length;
+        breadth = breadth;
+    }
+};
+```
+
+Now the question becomes:  
+- Which `length` is the data member?  
+- Which `length` is the constructor parameter?  
+
+The compiler gives priority to the local variables (parameters).    
+
+So this statement becomes:  
+
+```cpp
+length = length;
+```
+
+which actually means
+
+```text
+parameter length = parameter length;
+```
+
+The object's data member remains unchanged.  
+
+The same happens for `breadth`.  
+
+**Solving the Ambiguity Using `this`**  
+
+To refer to the data members of the current object, use the `this` pointer.  
+
+```
+class Rectangle {
+private:
+    int length;
+    int breadth;
+
+public:
+    Rectangle(int length, int breadth) {
+        this->length = length;
+        this->breadth = breadth;
+    }
+};
+```
+
+Now the meaning becomes clear:  
+
+```
+this->length
+```
+
+refers to the object's data member, while  
+
+```
+length
+```
+
+refers to the constructor parameter.  
+
+Similarly,  
+
+``` 
+this->breadth
+```
+
+refers to the object's data member, and  
+
+```
+breadth
+```
+
+refers to the constructor parameter.  
+
+**Understanding `this`**  
+
+The `this` pointer always points to the current object.  
+
+Suppose we create an object:  
+
+```
+Rectangle r1(10, 5);
+```
+
+When the constructor executes,  
+
+```
+this
+```
+
+points to `r1`.  
+
+So,  
+
+```
+this->length
+```
+
+is equivalent to  
+
+```cpp
+r1.length
+```
+
+and  
+
+```cpp
+this->breadth
+```
+
+is equivalent to  
+
+```cpp
+r1.breadth
+```  
+
+**Object Creation Example**  
+
+```
+Rectangle r1(10, 5);
+```
+
+The values are passed to the constructor.  
+
+```
+Rectangle(int length, int breadth)
+```
+
+Initially,  
+
+```text
+Parameter length  = 10
+Parameter breadth = 5
+
+Object members
+--------------
+length  = garbage value
+breadth = garbage value
+```
+
+After executing  
+
+```
+this->length = length;
+```
+
+the object's `length` becomes  
+
+```text
+Object members
+--------------
+length  = 10
+breadth = garbage value
+```
+
+After executing  
+
+```
+this->breadth = breadth;
+```
+
+the object becomes
+
+```text
+Object members
+--------------
+length  = 10
+breadth = 5
+```
+
+**`this` Pointer Internally:**  
+
+Internally, `this` contains the memory address of the current object.    
+Conceptually, `this` may contain an address like `0x7ffeebff590`. This address represents the location of the object currently executing the member function.  
+
+**Syntax:**  
+
+Access a member using:
+
+```cpp
+this->member;
+```
+
+Example:
+
+```cpp
+this->length = length;
+this->breadth = breadth;
+```
+
+**Why Use `this`?**  
+
+The `this` pointer is commonly used to:  
+- Resolve ambiguity between data members and parameters.  
+- Access members of the current object.  
+- Improve code readability when parameter names match member names.  
+- Return the current object (advanced use cases such as method chaining).  
+
+**Structure vs Class in C++**  
+
+In C++, structures (`struct`) and classes (`class`) are almost identical. Both can contain:  
+- Data members (variables)  
+- Member functions (methods)  
+The primary difference between them is their default access specifier.  
+
+**Structure Example**  
+
+```
+#include <iostream>
+using namespace std;
+
+struct Demo {
+    int x;
+    int y;
+
+    void display() {
+        cout << x << " " << y << endl;
+    }
+};
+
+int main() {
+    Demo d;
+
+    d.x = 10;
+    d.y = 20;
+
+    d.display();
+
+    return 0;
+}
+
+Output:
+10 20
+```  
+
+In this example:  
+- `x` and `y` are data members.  
+- `display()` is a member function.  
+- The structure object accesses both variables and functions using the dot (`.`) operator.  
+
+**Structures in C vs C++**  
+
+**C Language**  
+
+In C, a structure can contain only data members.  
+
+```
+struct Demo {
+    int x;
+    int y;
+};
+```
+
+Functions cannot be defined inside a structure.  
+
+**C++**  
+
+In C++, a structure can contain both data members and member functions.  
+
+```
+struct Demo {
+    int x;
+    int y;
+
+    void display() {
+        cout << x << " " << y;
+    }
+};
+```
+
+Thus, a C++ structure behaves very similarly to a class.  
+
+**Default Access Specifier**  
+
+**Structure**  
+
+Everything is public by default.  
+
+```
+struct Demo {
+    int x;
+    int y;
+
+    void display() {}
+};
+```
+
+is equivalent to
+
+```  
+struct Demo {
+public:
+    int x;
+    int y;
+
+    void display() {}
+};
+```
+
+**Class**  
+
+Everything is private by default.  
+
+```
+class Demo {
+    int x;
+    int y;
+
+    void display() {}
+};
+```
+
+is equivalent to
+
+```
+class Demo {
+private:
+    int x;
+    int y;
+
+    void display() {}
+};
+```  
+
+Therefore, the members cannot be accessed directly from outside the class.  
+
+**Comparison**  
+
+| Feature | `struct` | `class` |
+|----------|----------|----------|
+| Can contain data members | ✅ | ✅ |
+| Can contain member functions | ✅ | ✅ |
+| Supports constructors | ✅ | ✅ |
+| Supports inheritance | ✅ | ✅ |
+| Supports polymorphism | ✅ | ✅ |
+| Default access specifier | **Public** | **Private** |
+
+**When to Use Structure?**    
+
+Structures are commonly used when:  
+- The object mainly stores data.  
+- All members are intended to be publicly accessible.  
+- A lightweight data container is sufficient.  
+
+Example:  
+
+```
+struct Student {
+    int rollNo;
+    string name;
+    float marks;
+};
+```   
+
+**When to Use Class?**  
+
+Classes are preferred when:  
+- Data should be hidden from outside code.  
+- Encapsulation is required.  
+- The object contains behavior along with data.  
+- Access control is important.  
+
+Example:  
+
+```
+class BankAccount {
+private:
+    double balance;
+
+public:
+    void deposit(double amount);
+    void withdraw(double amount);
+};
+```  
 
 
 
