@@ -441,7 +441,7 @@ Direct reading is also prohibited.
 cout << r.length; // ❌ Error
 ```  
 
-If data is private, how doe we set values and read values?  
+If data is private, how do we set values and read values?  
 We need special functions.  
 
 **Setter Functions**  
@@ -718,9 +718,9 @@ This is called the:
 - Built-in Constructor  
 It is responsible for constructing the object.   
 
-# Types of Constructors
+**Types of Constructors**  
 
-There are three commonly used constructors.
+There are three commonly used constructors.  
 
 ```
 Constructors
@@ -732,15 +732,13 @@ Constructors
       ├── Non-Parameterized Constructor
       ├── Parameterized Constructor
       └── Copy Constructor
-```
+```  
 
----
-
-# 1. Non-Parameterized Constructor
+**1. Non-Parameterized Constructor**  
 
 A constructor without parameters.
 
-```cpp
+```
 class Rectangle
 {
 public:
@@ -751,32 +749,30 @@ public:
         breadth = 0;
     }
 };
-```
+```  
 
 Creating an object
 
-```cpp
+```
 Rectangle r;
 ```
 
 or
 
-```cpp
+```
 Rectangle r();
 ```
 
-initializes
+initializes  
 
 ```
 length  = 0
 breadth = 0
-```
+```  
 
-instead of garbage values.
+instead of garbage values.  
 
----
-
-# Memory Representation
+Memory Representation
 
 ```
 Rectangle r
@@ -785,15 +781,13 @@ Rectangle r
 │ length = 0   │
 │ breadth = 0  │
 └──────────────┘
+```  
+
+**2. Parameterized Constructor**  
+
+A constructor that accepts arguments.  
+
 ```
-
----
-
-# 2. Parameterized Constructor
-
-A constructor that accepts arguments.
-
-```cpp
 class Rectangle
 {
 public:
@@ -804,15 +798,15 @@ public:
         setBreadth(b);
     }
 };
+```  
+
+Creating an object  
+
 ```
-
-Creating an object
-
-```cpp
 Rectangle r(10, 5);
-```
+```  
 
-Results in
+Results in  
 
 ```
 Rectangle r
@@ -821,55 +815,51 @@ Rectangle r
 │ length = 10  │
 │ breadth = 5  │
 └──────────────┘
+```  
+
+**Why Use Setter Functions?**  
+
+Instead of writing  
+
 ```
-
----
-
-## Why Use Setter Functions?
-
-Instead of writing
-
-```cpp
 length = l;
 breadth = b;
+```  
+
+the constructor calls  
+
 ```
-
-the constructor calls
-
-```cpp
 setLength(l);
 setBreadth(b);
+```  
+
+because the setters already perform validation.  
+
+This avoids duplicating validation logic.  
+
+**3. Copy Constructor**  
+
+A copy constructor creates a new object as a copy of an existing object.  
+
+Syntax  
+
 ```
-
-because the setters already perform validation.
-
-This avoids duplicating validation logic.
-
----
-
-# 3. Copy Constructor
-
-A copy constructor creates a **new object as a copy of an existing object**.
-
-Syntax
-
-```cpp
 Rectangle(Rectangle &rect)
 {
     length = rect.length;
     breadth = rect.breadth;
 }
+```  
+
+Creating an object  
+
 ```
-
-Creating an object
-
-```cpp
 Rectangle r1(10, 5);
 
 Rectangle r2(r1);
-```
+```  
 
-Memory
+Memory  
 
 ```
 r1
@@ -886,81 +876,58 @@ r2
 │ length = 10  │
 │ breadth = 5  │
 └──────────────┘
+```  
+
+The new object gets the same values as the original object.  
+
+**Why Pass by Reference?**  
+
+Copy constructor parameter  
+
 ```
-
-The new object gets the same values as the original object.
-
----
-
-# Why Pass by Reference?
-
-Copy constructor parameter
-
-```cpp
 Rectangle(Rectangle &rect)
 ```
 
-is passed by **reference**.
+is passed by reference.  
 
-Passing by value would require creating another copy,
+Passing by value would require creating another copy, which would again invoke the copy constructor, leading to unnecessary object creation.  
 
-which would again invoke the copy constructor,
+**Constructor Overloading**  
 
-leading to unnecessary object creation.
+Constructors can be overloaded.  
 
----
-
-# Constructor Overloading
-
-Constructors can be overloaded.
-
-```cpp
+```
 Rectangle();
 
 Rectangle(int l, int b);
 
 Rectangle(Rectangle &rect);
+```  
+
+All have the same name but different parameter lists.  
+All three are valid overloads.    
+
+**Default Arguments in Constructors**  
+
+Parameterized constructors can also use default arguments.  
+
 ```
-
-All have the same name but different parameter lists.
-
----
-
-# Constructor Overloading Diagram
-
-```
-Rectangle()
-
-Rectangle(int, int)
-
-Rectangle(Rectangle&)
-```
-
-All three are valid overloads.
-
----
-
-# Default Arguments in Constructors
-
-Parameterized constructors can also use default arguments.
-
-```cpp
 Rectangle(int l = 0, int b = 0)
 {
     setLength(l);
     setBreadth(b);
 }
+```  
+
+Now all of the following are valid.  
+
 ```
-
-Now all of the following are valid.
-
-```cpp
 Rectangle r1();
 
 Rectangle r2(10);
 
 Rectangle r3(10, 5);
-```
+```  
 
 Behavior
 
@@ -970,27 +937,11 @@ Behavior
 | `Rectangle r2(10);` | `length = 10`, `breadth = 0` |
 | `Rectangle r3(10,5);` | `length = 10`, `breadth = 5` |
 
----
+**Important Note**  
+If a parameterized constructor already provides default values, there is no need to separately write a non-parameterized constructor.  
+Otherwise, both constructors would match causing ambiguity.    
 
-# Important Note
-
-If a parameterized constructor already provides default values,
-
-there is **no need** to separately write a non-parameterized constructor.
-
-Otherwise,
-
-both constructors would match
-
-```cpp
-Rectangle r;
-```
-
-causing ambiguity.
-
----
-
-# Constructor Execution
+**Constructor Execution**  
 
 ```
 Object Creation
@@ -1003,44 +954,241 @@ Initialize Data Members
         │
         ▼
 Ready to Use Object
+```    
+
+Remember: A constructor's job is to ensure that an object is created in a valid, usable state from the very beginning, rather than requiring initialization afterward.     
+
+**Deep Copy Constructor**  
+
+When a class contains dynamically allocated memory (using `new`), the default behavior of a copy constructor may lead to problems.  
+Instead of creating a new copy of the dynamic memory, it simply copies the pointer address, causing multiple objects to share the same memory.  
+To avoid this, we use a Deep Copy Constructor.  
+
+Example Class:  
+
+```
+class Test
+{
+public:
+    int a;
+    int *p;
+
+    Test(int size)
+    {
+        a = size;
+        p = new int[a];
+    }
+
+    Test(Test &t)
+    {
+        a = t.a;
+        p = t.p;        // Shallow Copy
+    }
+};
+```  
+
+Step 1: Create the First Object  
+
+```
+Test t(5);
+```  
+
+The parameterized constructor is called.  
+
+Execution:  
+
+```
+a = 5;
+
+p = new int[5];
+```  
+
+Memory Layout
+
+```
+Stack                     Heap
+
+t
+┌────────────┐
+│ a = 5      │
+│ p ---------┼──────────────┐
+└────────────┘              │
+                            ▼
+                     +---+---+---+---+---+
+                     |   |   |   |   |   |
+                     +---+---+---+---+---+
+```  
+
+- `a` stores the size.  
+- `p` points to a dynamically allocated array of size 5.  
+
+Step 2: Create a Copy
+
+```
+Test t2(t);
 ```
 
----
+The copy constructor is called.  
 
-# Key Characteristics
+Current implementation:  
 
-- Same name as the class.
-- No return type.
-- Called automatically.
-- Initializes objects.
-- Can be overloaded.
-- Supports default arguments.
-- Compiler provides one if none is written.
+```
+Test(Test &t)
+{
+    a = t.a;
+    p = t.p;
+}
+```  
 
----
+Memory Layout (Shallow Copy)
 
-# Key Points
+```
+Stack                             Heap
 
-- Constructors initialize objects during creation.
-- Objects should never start with garbage values.
-- Constructors improve object reliability.
-- Three commonly used constructors:
-  - Non-Parameterized
-  - Parameterized
-  - Copy Constructor
-- Constructors can be overloaded.
-- Parameterized constructors can use default arguments.
-- Copy constructors usually take objects by **reference**.
+t
+┌────────────┐
+│ a = 5      │
+│ p ---------┼──────────────┐
+└────────────┘              │
+                            │
+t2                          │
+┌────────────┐              │
+│ a = 5      │              │
+│ p ---------┼──────────────┘
+└────────────┘
+                            ▼
+                     +---+---+---+---+---+
+                     |   |   |   |   |   |
+                     +---+---+---+---+---+
+```  
 
----
+Notice that both pointers point to the same array.  
 
-# Summary
+Why is This Wrong?  
+The copied object should have its own memory.  
+Instead,  
+- `t` owns one array.  
+- `t2` points to the same array.  
+Both objects now share the same dynamic memory.  
+This is called Shallow Copy.  
 
-| Constructor | Purpose |
-|-------------|---------|
-| **Default (Compiler Generated)** | Automatically constructs objects when no constructor is written |
-| **Non-Parameterized Constructor** | Initializes objects with default values |
-| **Parameterized Constructor** | Initializes objects using user-provided values |
-| **Copy Constructor** | Creates a new object as a copy of an existing object |
+Problems with Shallow Copy:  
+Since both objects share the same memory:  
+- Changes made through one object affect the other.  
+- If one object deletes the memory, the other pointer becomes invalid.  
+- Can lead to dangling pointers and double deletion.  
 
-> **Remember:** A constructor's job is to ensure that an object is **created in a valid, usable state from the very beginning**, rather than requiring initialization afterward. :contentReference[oaicite:2]{index=2}
+**Deep Copy**  
+Instead of copying the pointer, allocate a new array and copy the contents.  
+
+```
+Test(Test &t)
+{
+    a = t.a;
+
+    p = new int[a];
+}
+```  
+
+Now each object gets its own memory.  
+
+Memory Layout (Deep Copy)  
+
+```
+Stack                                  Heap
+
+t
+┌────────────┐
+│ a = 5      │
+│ p ---------┼────────────► +---+---+---+---+---+
+└────────────┘             |   |   |   |   |   |
+                           +---+---+---+---+---+
+
+t2
+┌────────────┐
+│ a = 5      │
+│ p ---------┼────────────► +---+---+---+---+---+
+└────────────┘             |   |   |   |   |   |
+                           +---+---+---+---+---+
+```  
+
+Now,  
+- `t` has its own array.  
+- `t2` has its own array.  
+The two objects are completely independent.  
+
+Copying the Elements:  
+Creating a new array is not enough.  
+If the original array already contains values, those values must also be copied.  
+
+Example:
+Original object  
+
+```
++----+----+----+----+----+
+| 6  | 9  | 5  | 4  | 3  |
++----+----+----+----+----+
+```  
+
+The copied object should also contain  
+
+```
++----+----+----+----+----+
+| 6  | 9  | 5  | 4  | 3  |
++----+----+----+----+----+
+```  
+
+This requires copying each element individually.  
+
+```
+for(int i = 0; i < a; i++)
+{
+    p[i] = t.p[i];
+}
+```  
+
+**Complete Deep Copy Constructor**  
+
+```
+Test(Test &t)
+{
+    a = t.a;
+
+    p = new int[a];
+
+    for(int i = 0; i < a; i++)
+    {
+        p[i] = t.p[i];
+    }
+}
+```  
+
+Now the copied object has:  
+- Its own data members  
+- Its own dynamically allocated memory  
+- A copy of all array elements  
+
+**Shallow Copy vs Deep Copy**  
+
+| Shallow Copy | Deep Copy |
+|--------------|-----------|
+| Copies pointer address | Allocates new memory |
+| Objects share the same dynamic memory | Each object owns its own memory |
+| Changes affect both objects | Objects are independent |
+| Can cause dangling pointers and double deletion | Safe memory management |
+| Suitable only when no dynamic memory is involved | Required when dynamic memory is used |
+
+**When is Deep Copy Required?**  
+A deep copy constructor is required whenever a class contains dynamically allocated memory.  
+
+Example:  
+
+```
+int *p = new int[10];
+```  
+
+or any other resource that needs independent ownership.    
+
+
+
+
