@@ -696,3 +696,6 @@ The implementation follows the same principles as the insertion operator.
 | `<<` | Output (Insertion) | `friend ostream& operator<<(ostream&, Complex&)` |
 | `>>` | Input (Extraction) | `friend istream& operator>>(istream&, Complex&)` |
 
+
+Note: The scope resolution operator (::) cannot be overloaded in C++ because it is used to define the context or scope in which identifiers are looked up, which is a fundamental part of the language's syntax and structure. This emphasizes your understanding of operator overloading and reinforces the distinction between operators that can be altered and those that are intrinsic to the language's design.  
+
