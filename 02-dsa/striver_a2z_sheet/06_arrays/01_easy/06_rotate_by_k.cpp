@@ -1,10 +1,20 @@
 // Algorithm: Rotate Array Left or Right by K Positions
 
 // Approach:
+// Normalize k using k % arr_size to avoid unnecessary full rotations.
+// For right rotation:
+// Reverse the entire array.
+// Reverse the first k elements.
+// Reverse the remaining elements.
+// For left rotation:
+// Reverse the entire array.
+// Reverse the first n-k elements.
+// Reverse the remaining k elements.
+// Convert the direction input to lowercase so that inputs such as
+// "RIGHT", "Right", and "right" are handled consistently.
 
-
-// Time Complexity: 
-// Space Complexity: 
+// Time Complexity: O(n) (a constant number of reversals and traversals)
+// Space Complexity: O(1) (rotation is performed in-place)
 
 #include <bits/stdc++.h>
 
@@ -74,9 +84,9 @@ int main(){
 
         std::reverse(arr.begin(), arr.end());
 
-        std::reverse(arr.begin(), arr.begin() + (k+1));
+        std::reverse(arr.begin(), arr.begin() + (arr_size - k));
 
-        std::reverse(arr.begin() + (k+1), arr.end());
+        std::reverse(arr.begin() + (arr_size - k), arr.end());
 
         std::cout<<"Array After Left Rotation: "<<std::endl;
 
