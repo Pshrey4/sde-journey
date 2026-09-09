@@ -168,7 +168,7 @@ Total Size = 8 bytes
 ```  
 Therefore,  
 ```  
-sizeof(Rectangle) = 4 bytes
+sizeof(Rectangle) = 8 bytes
 ```  
 
 **Accessing Data Members**  
